@@ -32,3 +32,4 @@ urllib3==1.25.10
 wcwidth==0.2.5
 wrapt==1.12.1
 requests==2.3.0
+pyshorteners==1.0.1
