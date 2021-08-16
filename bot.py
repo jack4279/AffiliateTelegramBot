@@ -8,6 +8,9 @@ from telegram import MessageEntity
 import re
 import requests
 import os
+import click
+from bs4 import BeautifulSoup
+import pyperclip
 
 PORT = int(os.environ.get('PORT', 5000))
 
