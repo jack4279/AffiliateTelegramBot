@@ -10,7 +10,6 @@ import requests
 import os
 import pyshorteners
 import datetime
-from bitly_api import bitly_api
 
 print('Bot Running...')
 
