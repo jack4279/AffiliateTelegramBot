@@ -35,6 +35,14 @@ def start(update, context):
 def newReferURL(pcode):
     return "https://"+baseURL+pcode+"?tag="+affiliate_tag
 
+def amsin(url):
+    """Turn a long amazon link into a short amzn link."""
+    html = requests.get(url).text
+    soup = BeautifulSoup(html)
+    asin = soup.find(text=re.compile('ASIN:')).parent.next_sibling
+    url = 'https://amzn.com/' + asin.strip()
+    return url
+
 #Expand shorted URL (amzn.to links) to normal Amazon URL
 def unshortURL(url):
     session = requests.Session()  # so connections are recycled
