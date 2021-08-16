@@ -80,6 +80,8 @@ def check_message(update , context):
 
 updater.dispatcher.add_handler(MessageHandler(Filters.text , check_message))
 
+updater.start_polling()
+
 def main():
     """Start the bot."""
     # Create the Updater and pass it your bot's token.
