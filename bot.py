@@ -59,6 +59,25 @@ def filterText(update, context):
             pCode = m.group(0)
         context.bot.send_message(chat_id=update.message.chat_id,reply_to_message_id=update.message.message_id, text=newReferURL(pCode))
 
+def check_message(update , context):
+    try:
+        request = newReferURL(pCode)
+        if request.status_code == 200:
+            shortened_link = pyshorteners.Shortener(api_key=bitlytoken).bitly.short(update.message.text)
+            context.bot.send_message(chat_id=update.effective_chat.id, text=check_mark_button + ' Done! Shortened Link: ' + shortened_link)
+            file = open('data.csv' , 'a')
+            file.write(str(update.effective_chat.id) + ',' + str(shortened_link) + ',' + str(datetime.datetime.today()) + '\n')
+            file.close()
+            return True
+        else:
+            context.bot.send_message(chat_id=update.effective_chat.id, text=cross_mark + ' Invalid link! use /help for tutorial')
+            return False
+    except:
+        context.bot.send_message(chat_id=update.effective_chat.id, text=cross_mark + ' Invalid link! use /help for tutorial')
+        return False
+
+updater.dispatcher.add_handler(MessageHandler(Filters.text , check_message))
+
 def main():
     """Start the bot."""
     # Create the Updater and pass it your bot's token.
