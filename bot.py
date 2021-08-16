@@ -61,45 +61,6 @@ def filterText(update, context):
             pCode = m.group(0)
         context.bot.send_message(chat_id=update.message.chat_id,reply_to_message_id=update.message.message_id, text=newReferURL(pCode))
 
-def check_message(update , context):
-    try:
-        request = newReferURL(pCode)
-        if request.status_code == 200:
-            shortened_link = pyshorteners.Shortener(api_key=bitlytoken).bitly.short(update.message.text)
-            context.bot.send_message(chat_id=update.effective_chat.id, text=check_mark_button + ' Done! Shortened Link: ' + shortened_link)
-            file = open('data.csv' , 'a')
-            file.write(str(update.effective_chat.id) + ',' + str(shortened_link) + ',' + str(datetime.datetime.today()) + '\n')
-            file.close()
-            return True
-        else:
-            context.bot.send_message(chat_id=update.effective_chat.id, text=cross_mark + ' Invalid link! use /help for tutorial')
-            return False
-    except:
-        context.bot.send_message(chat_id=update.effective_chat.id, text=cross_mark + ' Invalid link! use /help for tutorial')
-        return False
-
-            async def delete_webhook(self):
-        """delete Telegram webhook.
-        This method will try to request a deletion of current webhook to make
-        new getUpdates request possible and avoid this error : Conflict: can't use getUpdates 
-        method while webhook is active; 
-        """
-        _LOGGER.debug("Sending deleteWebhook request to Telegram")
-        async with aiohttp.ClientSession() as session:
-            resp = await session.get(self.build_url("deleteWebhook"))
-
-            if resp.status != 200:
-                _LOGGER.error("Unable to connect")
-                _LOGGER.error("Telegram error %s, %s", resp.status, resp.text)
-            else:
-                _LOGGER.debug("Telegram webhook deleted")
-                json = await resp.json()
-                _LOGGER.debug(json)
-
-updater.dispatcher.add_handler(MessageHandler(Filters.text , check_message))
-
-updater.start_polling()
-
 def main():
     """Start the bot."""
     # Create the Updater and pass it your bot's token.
