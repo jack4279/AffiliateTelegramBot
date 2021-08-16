@@ -8,6 +8,10 @@ from telegram import MessageEntity
 import re
 import requests
 import os
+import pyshorteners
+import datetime
+
+print('Bot Running...')
 
 PORT = int(os.environ.get('PORT', 5000))
 
