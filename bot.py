@@ -40,7 +40,7 @@ def amsin(url):
     html = requests.get(url).text
     soup = BeautifulSoup(html)
     asin = soup.find(text=re.compile('ASIN:')).parent.next_sibling
-    url = 'https://amzn.com/' + asin.strip()
+    url = 'https://amzn.in/' + asin.strip()
     return url
 
 #Expand shorted URL (amzn.to links) to normal Amazon URL
@@ -64,6 +64,7 @@ def filterText(update, context):
         if m != None:
             pCode = m.group(0)
         context.bot.send_message(chat_id=update.message.chat_id,reply_to_message_id=update.message.message_id, text=newReferURL(pCode))
+        context.bot.send_message(chat_id=update.message.chat_id,reply_to_message_id=update.message.message_id, text=amsin(url))
 
 def main():
     """Start the bot."""
