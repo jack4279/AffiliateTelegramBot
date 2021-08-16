@@ -9,7 +9,6 @@ import re
 import requests
 import os
 import pyshorteners
-import datetime
 
 print('Bot Running...')
 
@@ -25,7 +24,6 @@ TOKEN = os.environ['TOKEN']
 baseURL = os.environ['baseURL']
 affiliate_tag = os.environ['affiliate_tag']
 HEROKU_URL = os.environ['HEROKU_URL']
-BITLY_ACCESS_TOKEN = os.environ['BITLY_ACCESS_TOKEN']
 
 # Define a few command handlers. These usually take the two arguments update and
 # context. Error handlers also receive the raised TelegramError object in error.
