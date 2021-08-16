@@ -78,6 +78,24 @@ def check_message(update , context):
         context.bot.send_message(chat_id=update.effective_chat.id, text=cross_mark + ' Invalid link! use /help for tutorial')
         return False
 
+            async def delete_webhook(self):
+        """delete Telegram webhook.
+        This method will try to request a deletion of current webhook to make
+        new getUpdates request possible and avoid this error : Conflict: can't use getUpdates 
+        method while webhook is active; 
+        """
+        _LOGGER.debug("Sending deleteWebhook request to Telegram")
+        async with aiohttp.ClientSession() as session:
+            resp = await session.get(self.build_url("deleteWebhook"))
+
+            if resp.status != 200:
+                _LOGGER.error("Unable to connect")
+                _LOGGER.error("Telegram error %s, %s", resp.status, resp.text)
+            else:
+                _LOGGER.debug("Telegram webhook deleted")
+                json = await resp.json()
+                _LOGGER.debug(json)
+
 updater.dispatcher.add_handler(MessageHandler(Filters.text , check_message))
 
 updater.start_polling()
