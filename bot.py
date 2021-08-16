@@ -8,9 +8,6 @@ from telegram import MessageEntity
 import re
 import requests
 import os
-import click
-from bs4 import BeautifulSoup
-import pyperclip
 
 PORT = int(os.environ.get('PORT', 5000))
 
@@ -34,14 +31,6 @@ def start(update, context):
 # Create the new URL with the refer tag
 def newReferURL(pcode):
     return "https://"+baseURL+pcode+"?tag="+affiliate_tag
-
-def amsin(url):
-    """Turn a long amazon link into a short amzn link."""
-    html = requests.get(url).text
-    soup = BeautifulSoup(html)
-    asin = soup.find(text=re.compile('ASIN:')).parent.next_sibling
-    url = 'https://amzn.in/' + asin.strip()
-    return url
 
 #Expand shorted URL (amzn.to links) to normal Amazon URL
 def unshortURL(url):
