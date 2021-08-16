@@ -11,6 +11,13 @@ import os
 import pyshorteners
 
 print('Bot Running...')
+def __init__(self):
+        super().__init__(
+            plugins={
+                "root": "plugins/__init__.py"
+            }
+        )
+        self.LOGGER = LOGGER
 
 PORT = int(os.environ.get('PORT', 5000))
 
