@@ -10,7 +10,7 @@ import requests
 import os
 import pyshorteners
 
-print('Bot Running...')
+print('Bot is going to start...')
 def __init__(self):
         super().__init__(
             plugins={
@@ -39,7 +39,7 @@ def start(update, context):
     context.bot.send_message(chat_id=update.effective_chat.id, text="Hello @" +username+ " , Welcome to @steallootdeal affiliate converter bot\n\n Its just a basic bot that will help in your daily affiliate work")
 
 # Create the new URL with the refer tag
-def newReferURL(update, pcode):
+def newReferURL(pcode, update):
     msg = update.message.text
     return msg+"\n\n https://"+baseURL+pcode+"?tag="+affiliate_tag
 
