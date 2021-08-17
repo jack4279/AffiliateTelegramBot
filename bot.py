@@ -39,8 +39,8 @@ def start(update, context):
     context.bot.send_message(chat_id=update.effective_chat.id, text="Hello @" +username+ " , Welcome to @steallootdeal affiliate converter bot\n\n Its just a basic bot that will help in your daily affiliate work")
 
 # Create the new URL with the refer tag
-def newReferURL(message, pcode):
-    msg = message.text
+def newReferURL(update, pcode):
+    msg = update.message.text
     return msg+"\n\n https://"+baseURL+pcode+"?tag="+affiliate_tag
 
 #Expand shorted URL (amzn.to links) to normal Amazon URL
