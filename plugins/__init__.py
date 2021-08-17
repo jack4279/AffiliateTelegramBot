@@ -8,6 +8,6 @@ full_link = newReferURL(pcode)
 
 short_url = access.shorten(full_link)
 
-context.bot.send_message(chat_id=update.message.chat_id,reply_to_message_id=update.message.message_id, text=short_url)
+context.bot.send_message(chat_id=update.message.chat_id,reply_to_message_id=update.message.message_id, text=Short URL = ',short_url['url)
 
 newReferURL(pcode)
