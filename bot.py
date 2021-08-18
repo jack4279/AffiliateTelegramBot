@@ -43,7 +43,7 @@ def start(update, context):
     context.bot.send_message(chat_id=update.effective_chat.id, text="Hello @" +username+ " , Welcome to @steallootdeal affiliate converter bot\n\n Its just a basic bot that will help in your daily affiliate work")
 
 # Create the new URL with the refer tag
-def newReferURL(pcode, update):
+def newReferURL(pCode, update):
     msg = update.message.text
     thestring = msg
     URLless_string = re.sub(r'^https?:\/\/.*[\r\n]*', '', thestring, flags=re.MULTILINE)
