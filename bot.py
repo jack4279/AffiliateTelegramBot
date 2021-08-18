@@ -55,7 +55,10 @@ def unshortURL(url):
     session = requests.Session()  # so connections are recycled
     resp = session.head("https://"+url, allow_redirects=True)
     return resp.url
-
+     url = newReferURL(pCode, update)
+        long_urls = [url]
+        short_url=shortener.shorten_urls(long_urls)
+        
 #Filter the msg text to extract the URL if found. Then send the corresponding reply
 # with the new affiliate URL
 def filterText(update, context):
@@ -71,9 +74,7 @@ def filterText(update, context):
         if m != None:
             pCode = m.group(0)
         context.bot.send_message(chat_id=update.message.chat_id,reply_to_message_id=update.message.message_id, text=short_url[0])
-        url = newReferURL(pCode, update)
-        long_urls = [msg]
-        short_url=shortener.shorten_urls(long_urls)
+       
 def main():
     """Start the bot."""
     # Create the Updater and pass it your bot's token.
