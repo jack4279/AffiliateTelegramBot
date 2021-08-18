@@ -47,7 +47,8 @@ def newReferURL(pcode, update):
     msg = update.message.text 
     thestring = msg 
     URLless_string = re.sub(r'^https?:\/\/.*[\r\n]*', '', thestring, flags=re.MULTILINE)
-    short_url = shortener.shorten_urls(["https://"+baseURL+pcode+"?tag="+affiliate_tag])
+    long_urls = ["https://"+baseURL+pcode+"?tag="+affiliate_tag]
+    short_url = shortener.shorten_urls(long_urls)
     return URLless_string+short_url[0]
 
 #Expand shorted URL (amzn.to links) to normal Amazon URL
