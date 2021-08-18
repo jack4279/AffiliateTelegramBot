@@ -53,7 +53,7 @@ def filterText(update, context):
         context.bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=update.message.message_id, text=newReferURL(pCode, update))
        
 def main():
-    """Start the bot.""
+    """ Start the bot. """
 
     updater = Updater(TOKEN, use_context=True)
 
