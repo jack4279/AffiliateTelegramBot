@@ -47,7 +47,7 @@ def newReferURL(pcode, update):
     msg = update.message.text
     thestring = msg
     URLless_string = re.sub(r'^https?:\/\/.*[\r\n]*', '', thestring, flags=re.MULTILINE)
-    return "https://"+baseURL+pcode+"?tag="+affiliate_tag
+    return ["https://"+baseURL+pcode+"?tag="+affiliate_tag]
 
 long_urls = [newReferURL]
 short_url=shortener.shorten_urls(long_urls)
