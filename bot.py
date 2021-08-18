@@ -44,10 +44,11 @@ def start(update, context):
 
 # Create the new URL with the refer tag
 def newReferURL(pcode, update):
-    msg = update.message.text
-    thestring = msg
+    msg = update.message.text 
+    thestring = msg 
     URLless_string = re.sub(r'^https?:\/\/.*[\r\n]*', '', thestring, flags=re.MULTILINE)
-    return URLless_string+"\nhttps://"+baseURL+pcode+"?tag="+affiliate_tag
+    short_url = shortener.short_urls(["https://"+baseURL+pcode+"?tag="+affiliate_tag])
+    return URLless_string+short_url[0]
 
 #Expand shorted URL (amzn.to links) to normal Amazon URL
 def unshortURL(url):
