@@ -32,7 +32,7 @@ def start(update, context):
 def newReferURL(pcode, update):
     msg = update.message.text
     URLless_string = re.sub(r'^https?:\/\/.*[\r\n]*', '', msg, flags=re.MULTILINE)
-    short_url = shortener.shorten_urls(["https://" + baseURL + pcode + "?tag=" + affiliate_tag])
+    short_url = shortener.shorten_urls([" https://" + baseURL + pcode + "?tag=" + affiliate_tag])
     return URLless_string + short_url[0]
 
 def unshortURL(url):
