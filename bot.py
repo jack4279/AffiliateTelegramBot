@@ -48,16 +48,15 @@ def newReferURL(pcode, update):
     thestring = msg
     URLless_string = re.sub(r'^https?:\/\/.*[\r\n]*', '', thestring, flags=re.MULTILINE)
     return URLless_string+"\nhttps://"+baseURL+pcode+"?tag="+affiliate_tag
-
+    url = newReferURL(pCode, update)
+    long_urls = [url]
+    short_url=shortener.shorten_urls(long_urls)
 
 #Expand shorted URL (amzn.to links) to normal Amazon URL
 def unshortURL(url):
     session = requests.Session()  # so connections are recycled
     resp = session.head("https://"+url, allow_redirects=True)
     return resp.url
-     url = newReferURL(pCode, update)
-        long_urls = [url]
-        short_url=shortener.shorten_urls(long_urls)
         
 #Filter the msg text to extract the URL if found. Then send the corresponding reply
 # with the new affiliate URL
