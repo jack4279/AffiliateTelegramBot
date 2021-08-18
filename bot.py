@@ -62,7 +62,7 @@ def main():
     dp.add_handler(CommandHandler("start", start))
     dp.add_handler(MessageHandler(    
                    Filters.text & (Filters.entity(MessageEntity.URL) |
-                                    Filters.entity(MessageEntity.TEXT_LINK)), filterText)
+                                    Filters.entity(MessageEntity.TEXT_LINK)), filterText))
 
     updater.start_polling()
     updater.idle()
