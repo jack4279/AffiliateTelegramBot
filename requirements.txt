@@ -34,3 +34,4 @@ wrapt==1.12.1
 requests==2.3.0
 pyshorteners==1.0.1
 bitly_api==0.3
+bitlyshortener==0.5.3
