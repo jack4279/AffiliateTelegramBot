@@ -9,6 +9,10 @@ import re
 import requests
 import os
 import pyshorteners
+import bitlyshortener
+
+tokens_pool = ['4fae9902744ef33f75a12df129858928f6c9b663']  # Use your own.
+shortener = bitlyshortener.Shortener(tokens=tokens_pool)
 
 print('Bot is going to start...')
 def __init__(self):
@@ -43,8 +47,10 @@ def newReferURL(pcode, update):
     msg = update.message.text
     thestring = msg
     URLless_string = re.sub(r'^https?:\/\/.*[\r\n]*', '', thestring, flags=re.MULTILINE)
-    return URLless_string+"https://"+baseURL+pcode+"?tag="+affiliate_tag
+    return "https://"+baseURL+pcode+"?tag="+affiliate_tag
 
+long_urls = [newReferURL(pcode, update)]
+short_url=shortener.shorten_urls(long_urls)
 #Expand shorted URL (amzn.to links) to normal Amazon URL
 def unshortURL(url):
     session = requests.Session()  # so connections are recycled
@@ -65,7 +71,7 @@ def filterText(update, context):
         m = re.search(r'(?:dp\/[\w]*)|(?:gp\/product\/[\w]*)',msg[start:].split(" ")[0])
         if m != None:
             pCode = m.group(0)
-        context.bot.send_message(chat_id=update.message.chat_id,reply_to_message_id=update.message.message_id, text=newReferURL(pCode, update))
+        context.bot.send_message(chat_id=update.message.chat_id,reply_to_message_id=update.message.message_id, text=long_urls)
 
 def main():
     """Start the bot."""
